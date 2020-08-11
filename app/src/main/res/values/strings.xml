@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">RemaindMe</string>
+    <string name="title">Here Your Title</string>
+    <string name="today">Today</string>
+    <string name="done">Done</string>
+    <string name="not_done">Not Done</string>
+    <string name="later">Later</string>
+    <string name="task">Task</string>
 </resources>
