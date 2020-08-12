@@ -4,7 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
+import android.view.Menu;
+import android.view.MenuInflater;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,5 +25,11 @@ public class MainActivity extends AppCompatActivity {
         taskList.add(new Task(3, "My Third Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
         TaskAdapter taskAdapter = new TaskAdapter(this,taskList);
         recyclerView.setAdapter(taskAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        new MenuInflater(this).inflate(R.menu.activity_main_menu, menu);
+        return true;
     }
 }
