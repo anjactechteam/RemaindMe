@@ -1,4 +1,4 @@
-package com.example.remainme.remaindme;
+package com.example.remainme.remaindme.Models;
 
 /**
  * Created by Rck ~str~ villan on 12-Aug-20.

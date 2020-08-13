@@ -1,4 +1,4 @@
-package com.example.remainme.remaindme;
+package com.example.remainme.remaindme.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.remainme.remaindme.R;
+import com.example.remainme.remaindme.Models.Task;
+
 import java.util.List;
-import java.util.zip.Inflater;
 
 /**
  * Created by Rck ~str~ villan on 12-Aug-20.
@@ -19,7 +21,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     private Context mCtx;
     private List<Task> taskList;
     int selected_position = -1;
-    TaskAdapter(Context mCtx,List<Task> taskList){
+    public TaskAdapter(Context mCtx,List<Task> taskList){
         this.mCtx=mCtx;
         this.taskList=taskList;
     }
@@ -32,7 +34,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     @Override
     public void onBindViewHolder(final TaskViewHolder holder, int position) {
-        Task task = taskList.get(position);
+        final Task task = taskList.get(position);
         holder.title.setText(task.getTitle());
         holder.schedule.setText(task.getSchedule());
         holder.done.setText(task.getDone());
@@ -47,6 +49,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                Toast.makeText(mCtx, task.getTitle() + " is selected!", Toast.LENGTH_SHORT).show();
                 if(selected_position != holder.getAdapterPosition())
                     selected_position = holder.getAdapterPosition();
                 notifyDataSetChanged();

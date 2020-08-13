@@ -25,40 +25,14 @@
                 android:weightSum="3">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1.5"
                     android:text="@string/app_name"
                     android:textColor="@color/Black"
                     android:gravity="center_vertical"
                     android:textSize="16sp"/>
-                <ImageView
-                    android:id="@+id/calendar"
-                    android:layout_width="0dp"
-                    android:layout_weight=".5"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_calendar_black_24dp"
-                    android:layout_gravity="center"
-                    android:padding="15dp"
-                    />
-                <ImageView
-                    android:id="@+id/search"
-                    android:layout_width="0dp"
-                    android:layout_weight=".5"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_search_black_24dp"
-                    android:layout_gravity="center"
-                    android:padding="15dp"
-                    />
-                <ImageView
-                    android:id="@+id/side_bar"
-                    android:layout_width="0dp"
-                    android:layout_weight=".5"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_clear_all_black_24dp"
-                    android:layout_gravity="center"
-                    android:padding="15dp"
-                    />
+
             </LinearLayout>
 
         </android.support.v7.widget.Toolbar>
@@ -73,6 +47,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:srcCompat="@drawable/ic_add_black_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>
