@@ -25,6 +25,11 @@
                 app:srcCompat="@drawable/ic_arrow_back_black_24dp"
                 android:background="@color/BgColor"
                 android:padding="@dimen/common10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RemainderMe"
+                android:textColor="@color/cardview_dark_background"/>
 
         </android.support.v7.widget.Toolbar>
 

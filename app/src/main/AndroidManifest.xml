@@ -15,14 +15,14 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:label="">
         </activity>
-        <activity
+        <activity-
             android:name=".Activities.BaseActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity->
         <service android:name=".Services.AlarmService"
             android:enabled="true"/>
         <receiver android:name=".Services.AlarmReceiver" />
