@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.remainme.remaindme">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +14,6 @@
         <activity android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="">
-
         </activity>
         <activity
             android:name=".Activities.BaseActivity"
@@ -22,6 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name=".Services.AlarmService"
+            android:enabled="true"/>
+        <receiver android:name=".Services.AlarmReceiver" />
     </application>
 
 </manifest>
