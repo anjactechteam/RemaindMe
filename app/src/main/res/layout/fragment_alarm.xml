@@ -29,8 +29,7 @@
             android:text="Alarm On/Off"
             android:id="@+id/alarmToggle"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/alarmTimePicker"
-            android:onClick="onToggleClicked" />
+            android:layout_below="@+id/alarmTimePicker" />
 
         <TextView
             android:layout_width="wrap_content"
