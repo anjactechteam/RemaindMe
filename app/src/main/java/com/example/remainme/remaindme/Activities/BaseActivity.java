@@ -6,40 +6,27 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
-<<<<<<< HEAD
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-=======
->>>>>>> 37fb3678985bfd67698ce38f7b5d7701c7c2a6ae
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
-<<<<<<< HEAD
 import com.example.remainme.remaindme.DataBaseHelper.DataBaseHelper;
 import com.example.remainme.remaindme.MainActivity;
 import com.example.remainme.remaindme.R;
-=======
-import com.example.remainme.remaindme.Adapters.TaskAdapter;
-import com.example.remainme.remaindme.Fragments.AlarmFragment;
->>>>>>> 37fb3678985bfd67698ce38f7b5d7701c7c2a6ae
 import com.example.remainme.remaindme.Lisitners.RecyclerTouchListener;
-import com.example.remainme.remaindme.MainActivity;
 import com.example.remainme.remaindme.Models.Task;
-import com.example.remainme.remaindme.R;
+import com.example.remainme.remaindme.Adapters.TaskAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +43,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
-<<<<<<< HEAD
         taskList =new ArrayList<>();
         recyclerView=(RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -73,9 +59,10 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onLongClick(View view, int position) {
-=======
->>>>>>> 37fb3678985bfd67698ce38f7b5d7701c7c2a6ae
 
+            }
+        }));
+        prepareData();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -96,7 +83,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
-<<<<<<< HEAD
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void prepareData(){
 //        taskList.add(new Task(1, "My first Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
@@ -129,9 +115,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         builder.setMessage(Message);
         builder.show();
     }
-=======
-
->>>>>>> 37fb3678985bfd67698ce38f7b5d7701c7c2a6ae
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -174,10 +157,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        Fragment fragment = null;
 
         if (id == R.id.nav_camera) {
-            fragment = new AlarmFragment();
+            // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -188,11 +170,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_send) {
 
-        }
-
-        if (fragment != null) {
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fl_container_base, fragment).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
