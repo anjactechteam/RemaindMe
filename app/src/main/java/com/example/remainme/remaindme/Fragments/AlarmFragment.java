@@ -94,6 +94,12 @@ public class AlarmFragment extends Fragment {
         ToggleButton alarmToggle = (ToggleButton) view.findViewById(R.id.alarmToggle);
         alarmManager = (AlarmManager) getActivity().getSystemService(ALARM_SERVICE);
 
+        alarmToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onToggleClicked(v);
+            }
+        });
         return view;
     }
 
