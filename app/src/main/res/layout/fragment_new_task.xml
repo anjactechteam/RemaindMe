@@ -47,6 +47,7 @@
                 android:hint="Name"
                 android:singleLine="true"
                 android:textSize="@dimen/text20sp"
+                android:id="@+id/task_name"
                 />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
@@ -59,27 +60,29 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="180dp"
         android:layout_marginBottom="-30dp">
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/date"
                 android:hint="Date"
                 android:layout_margin="10dp"
+                android:drawableBottom="#e91e63"
+                android:textColor="#e91e63"
                 android:padding="15dp"
                 android:singleLine="true"
-                android:textColor="@color/cardview_dark_background"
                 android:drawableRight="@drawable/ic_calendar_black_24dp"/>
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/time"
                 android:hint="Time"
+                android:drawableBottom="#e91e63"
+                android:textColor="#e91e63"
                 android:singleLine="true"
                 android:layout_marginTop="80dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:padding="15dp"
-                android:textColor="@color/cardview_dark_background"
                 android:drawableRight="@drawable/ic_schedule_black_24dp"/>
         <TextView
             android:layout_width="170dp"
@@ -150,6 +153,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
             <Button
+                android:id="@+id/create_new_task"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"

@@ -3,18 +3,29 @@ package com.example.remainme.remaindme.Fragments;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import com.example.remainme.remaindme.Activities.BaseActivity;
+import com.example.remainme.remaindme.DataBaseHelper.DataBaseHelper;
+import com.example.remainme.remaindme.MainActivity;
 import com.example.remainme.remaindme.R;
-
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 /**
@@ -34,7 +45,9 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    EditText time,date;
+    TextView time,date,task_name;
+    Button create_task;
+    DataBaseHelper myDb;
     private int mYear, mMonth, mDay, mHour, mMinute;
     private OnFragmentInteractionListener mListener;
 
@@ -43,7 +56,8 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
     }
 
     /**
-     * Use this factory method to create a new instance of
+     * Use this factory
+     * method to create a new instance of
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
@@ -69,15 +83,20 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View viewroot= inflater.inflate(R.layout.fragment_new_task, container, false);
-        time =(EditText)viewroot.findViewById(R.id.time);
-        date =(EditText)viewroot.findViewById(R.id.date);
+        time = viewroot.findViewById(R.id.time);
+        date = viewroot.findViewById(R.id.date);
+        task_name =viewroot.findViewById(R.id.task_name);
+        create_task = viewroot.findViewById(R.id.create_new_task);
+        myDb = new DataBaseHelper(getContext(),"my_task");
         time.setOnClickListener(this);
         date.setOnClickListener(this);
+        create_task.setOnClickListener(this);
         return viewroot;
     }
 
@@ -105,6 +124,7 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
         mListener = null;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onClick(View view) {
         if(view==time){
@@ -145,8 +165,29 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
         }
-    }
+        if(view==create_task){
+            String string_create_task= task_name.getText().toString();
+            String string_date_time  = date.getText().toString()+" "+time.getText().toString();
+            if(string_create_task.equals("") ||  string_date_time.equals("") || string_create_task.isEmpty() || string_date_time.isEmpty()) {
+                Toast.makeText(getContext(), "Please select date/time/task", Toast.LENGTH_SHORT).show();
+                return;
+            }else{
+                boolean isInserted = myDb.insertData(string_create_task,string_date_time,"Y");
+                if(isInserted == true) {
+                    task_name.setText("");
+                    date.setText("");
+                    time.setText("");
+                    Intent refresh = new Intent(getContext(), BaseActivity.class);
+                    startActivity(refresh);
+                    getActivity().finish();
+                    Toast.makeText(getContext(),"Data Inserted",Toast.LENGTH_LONG).show();
+                }
+                else
+                    Toast.makeText(getContext(),"Data not Inserted",Toast.LENGTH_LONG).show();
+            }
 
+        }
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
