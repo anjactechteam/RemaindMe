@@ -13,6 +13,7 @@ import android.util.Log;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+
 /**
  * Created by Rck ~str~ villan on 18-Aug-20.
  */
@@ -52,7 +53,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(this.title,title);
         contentValues.put(this.dateTime,datetime);
         contentValues.put(this.remainder,reminder);
-        contentValues.put(this.createdAt,dtf.format(now));
+        contentValues.put(this.createdAt,"data");
         Log.e(">>>>>data",contentValues.toString());
         long result = db.insert(this.tableName,null ,contentValues);
         if(result == -1)

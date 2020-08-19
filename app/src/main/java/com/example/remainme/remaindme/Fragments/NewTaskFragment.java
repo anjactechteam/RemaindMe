@@ -23,7 +23,7 @@ import android.widget.Toast;
 
 import com.example.remainme.remaindme.Activities.BaseActivity;
 import com.example.remainme.remaindme.DataBaseHelper.DataBaseHelper;
-import com.example.remainme.remaindme.MainActivity;
+import com.example.remainme.remaindme.Activities.MainActivity;
 import com.example.remainme.remaindme.R;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -144,7 +144,7 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
                         }
                     }, mHour, mMinute, false);
             timePickerDialog.show();
-        }
+        } // crash da same errror
         if(view==date){
             final Calendar c = Calendar.getInstance();
             mYear = c.get(Calendar.YEAR);

@@ -1,4 +1,4 @@
-package com.example.remainme.remaindme;
+package com.example.remainme.remaindme.Activities;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.remainme.remaindme.Fragments.NewTaskFragment;
+import com.example.remainme.remaindme.R;
 
 public class MainActivity extends AppCompatActivity implements NewTaskFragment.OnFragmentInteractionListener {
 

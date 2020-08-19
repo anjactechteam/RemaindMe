@@ -15,4 +15,18 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="DeveloperName">Arun Chakkaravarthy</string>
+    <string name="user_image_view">User Image View</string>
+    <string name="DeveloperEmailID">mailtoarunchakkaravarthy@gmail.com</string>
+    <string name="email">Email</string>
+    <string name="mobile">Mobile</string>
+    <string name="DeveloperMobileNo">+91 6369917587</string>
+    <string name="nav_menu_home">Home</string>
+    <string name="nav_menu_add_task">Add Task</string>
+    <string name="nav_menu_profile">Profile</string>
+    <string name="nav_menu_settings">Settings</string>
+    <string name="nav_menu_share">Share</string>
+    <string name="nav_menu_rate_us">Rate Us</string>
+    <string name="nav_menu_about_us">About Us</string>
+    <string name="nav_menu_feedback">Feedback</string>
 </resources>

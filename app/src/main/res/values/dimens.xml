@@ -9,4 +9,10 @@
     <dimen name="common16dp">16dp</dimen>
     <dimen name="text20sp">20sp</dimen>
     <dimen name="common10dp">10dp</dimen>
+    <dimen name="text30sp">30sp</dimen>
+    <dimen name="text25sp">25sp</dimen>
+    <dimen name="text10sp">10sp</dimen>
+    <dimen name="common1dp">1dp</dimen>
+    <dimen name="common5dp">5dp</dimen>
+    <dimen name="common3dp">3dp</dimen>
 </resources>

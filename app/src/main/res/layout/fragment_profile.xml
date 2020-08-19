@@ -1,13 +1,100 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.remainme.remaindme.Fragments.ProfileFragment">
+    android:orientation="vertical"
+    android:background="@color/BgColor"
+    tools:context=".Fragments.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/userImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/user_image_view"
+            android:minHeight="250dp"
+            android:scaleType="fitCenter"
+            android:src="@color/SkyBlue" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/userImage"
+            android:layout_marginTop="-75dp">
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common16dp"
+                android:padding="@dimen/common3dp"
+                android:autoSizeMinTextSize="@dimen/text25sp"
+                android:text="@string/DeveloperName"
+                android:textColor="@color/White"
+                android:textSize="@dimen/text30sp"
+                android:textStyle="bold|normal"
+                tools:targetApi="o" />
+
+        </FrameLayout>
+
+    </RelativeLayout>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/common16dp"
+        android:text="@string/email"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/text10sp"
+        android:autoSizeMinTextSize="@dimen/text10sp"
+        android:textStyle="bold|normal"
+        tools:targetApi="o" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/userEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/common16dp"
+        android:layout_marginLeft="@dimen/common16dp"
+        android:autoSizeMinTextSize="@dimen/text16sp"
+        android:text="@string/DeveloperEmailID"
+        android:textColor="@color/profile_text"
+        android:textSize="@dimen/text16sp"
+        android:textStyle="bold|normal" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/common16dp"
+        android:text="@string/mobile"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/text10sp"
+        android:autoSizeMinTextSize="@dimen/text10sp"
+        android:textStyle="bold|normal"
+        tools:targetApi="o" />
+
+    <TextView
+        android:id="@+id/userMobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/common16dp"
+        android:layout_marginLeft="@dimen/common16dp"
+        android:autoSizeMinTextSize="@dimen/text16sp"
+        android:text="@string/DeveloperMobileNo"
+        android:textColor="@color/profile_text"
+        android:textSize="@dimen/text16sp"
+        android:textStyle="bold|normal" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common1dp"
+        android:layout_margin="@dimen/common16dp"
+        android:background="@color/divider"
+        android:padding="@dimen/common5dp" />
+
+</LinearLayout>

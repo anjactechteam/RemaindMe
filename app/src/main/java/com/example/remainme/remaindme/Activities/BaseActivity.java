@@ -1,80 +1,35 @@
 package com.example.remainme.remaindme.Activities;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
-<<<<<<< HEAD
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-=======
->>>>>>> 37fb3678985bfd67698ce38f7b5d7701c7c2a6ae
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-<<<<<<< HEAD
-import com.example.remainme.remaindme.DataBaseHelper.DataBaseHelper;
-import com.example.remainme.remaindme.MainActivity;
+import com.example.remainme.remaindme.Fragments.HomeFragment;
+import com.example.remainme.remaindme.Fragments.ProfileFragment;
+import com.example.remainme.remaindme.Fragments.SettingsFragment;
 import com.example.remainme.remaindme.R;
-=======
-import com.example.remainme.remaindme.Adapters.TaskAdapter;
-import com.example.remainme.remaindme.Fragments.AlarmFragment;
->>>>>>> 37fb3678985bfd67698ce38f7b5d7701c7c2a6ae
-import com.example.remainme.remaindme.Lisitners.RecyclerTouchListener;
-import com.example.remainme.remaindme.MainActivity;
-import com.example.remainme.remaindme.Models.Task;
-import com.example.remainme.remaindme.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    List<Task> taskList;
-    RecyclerView recyclerView;
-    TaskAdapter taskAdapter;
+
     DrawerLayout drawer;
-    DataBaseHelper myDb;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
-<<<<<<< HEAD
-        taskList =new ArrayList<>();
-        recyclerView=(RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        taskAdapter = new TaskAdapter(this,taskList);
-        recyclerView.setAdapter(taskAdapter);
-        myDb = new DataBaseHelper(this,"my_task");
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Task movie = taskList.get(position);
-                Toast.makeText(getApplicationContext(), movie.getTitle() + " is fucked up!", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-=======
->>>>>>> 37fb3678985bfd67698ce38f7b5d7701c7c2a6ae
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -96,47 +51,17 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
-<<<<<<< HEAD
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void prepareData(){
-//        taskList.add(new Task(1, "My first Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-//        taskList.add(new Task(2, "My Second Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-//        taskList.add(new Task(3, "My Third Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-//        taskList.add(new Task(4, "My fourth Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-//        taskList.add(new Task(5, "My fifth Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-//        taskList.add(new Task(6, "My sixth Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-//        taskList.add(new Task(7, "My seventh Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-//        taskList.add(new Task(8, "My eigth Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-//        taskList.add(new Task(9, "My nine Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-//        taskList.add(new Task(10, "My ten Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-//        taskList.add(new Task(11, "My eleven Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-//        taskList.add(new Task(12, "My twelve Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-        Cursor res = myDb.getAllData();
-        if(res.getCount() == 0) {
-            // show message
-            showMessage("ReminderMe","Create Your Schedule");
-            return;
-        }
-        while (res.moveToNext()) {
-            taskList.add(new Task(Integer.parseInt(res.getString(0)), res.getString(1),res.getString(3),"done","not_done","later",R.drawable.ic_schedule_black_24dp));
-        }
-        taskAdapter.notifyDataSetChanged();
-    }
-    public void showMessage(String title,String Message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(Message);
-        builder.show();
-    }
-=======
 
->>>>>>> 37fb3678985bfd67698ce38f7b5d7701c7c2a6ae
+    @Override
+    protected void onStart() {
+        super.onStart();
+        navigateToFragment(new HomeFragment());
+    }
+
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (drawer.isDrawerOpen(GravityCompat.END)) {
+            drawer.closeDrawer(GravityCompat.END);
         } else {
             super.onBackPressed();
         }
@@ -175,28 +100,41 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Fragment fragment = null;
+        Class aClass = null;
 
-        if (id == R.id.nav_camera) {
-            fragment = new AlarmFragment();
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        if (id == R.id.nav_home) {
+            fragment = new HomeFragment();
+        } else if (id == R.id.nav_add_task) {
+            aClass = MainActivity.class;
+        } else if (id == R.id.nav_profile) {
+            fragment = new ProfileFragment();
+        } else if (id == R.id.nav_settings) {
+            fragment = new SettingsFragment();
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_rate_us) {
+
+        } else if (id == R.id.nav_feedback) {
+
+        } else if (id == R.id.nav_about_us) {
 
         }
 
-        if (fragment != null) {
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fl_container_base, fragment).commit();
+        if (aClass != null) {
+            startActivity(new Intent(BaseActivity.this, aClass));
+        } else {
+            navigateToFragment(fragment);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.END);
         return true;
+    }
+
+    public void navigateToFragment(Fragment fragment){
+        if (fragment != null) {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fl_container_base, fragment).commit();
+        }
     }
 }
