@@ -1,6 +1,7 @@
 package com.example.remainme.remaindme.Activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -12,16 +13,18 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.example.remainme.remaindme.Fragments.HomeFragment;
+import com.example.remainme.remaindme.Fragments.NewTaskFragment;
 import com.example.remainme.remaindme.Fragments.ProfileFragment;
 import com.example.remainme.remaindme.Fragments.SettingsFragment;
 import com.example.remainme.remaindme.R;
 
-public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,NewTaskFragment.OnFragmentInteractionListener {
 
     DrawerLayout drawer;
 
@@ -33,14 +36,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(BaseActivity.this, MainActivity.class));
-            }
-        });
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
        /* ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -105,7 +100,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_home) {
             fragment = new HomeFragment();
         } else if (id == R.id.nav_add_task) {
-            aClass = MainActivity.class;
+            fragment = new NewTaskFragment();
         } else if (id == R.id.nav_profile) {
             fragment = new ProfileFragment();
         } else if (id == R.id.nav_settings) {
@@ -133,8 +128,13 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     public void navigateToFragment(Fragment fragment){
         if (fragment != null) {
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fl_container_base, fragment).commit();
+           FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+           fragmentTransaction.replace(R.id.fl_container_base, fragment).commit();
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

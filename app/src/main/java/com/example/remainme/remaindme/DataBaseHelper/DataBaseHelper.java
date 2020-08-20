@@ -53,7 +53,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(this.title,title);
         contentValues.put(this.dateTime,datetime);
         contentValues.put(this.remainder,reminder);
-        contentValues.put(this.createdAt,"data");
+        contentValues.put(this.createdAt,dtf.format(now));
         Log.e(">>>>>data",contentValues.toString());
         long result = db.insert(this.tableName,null ,contentValues);
         if(result == -1)

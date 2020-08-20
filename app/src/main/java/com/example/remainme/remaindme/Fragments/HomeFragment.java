@@ -4,7 +4,9 @@ import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.remainme.remaindme.Activities.BaseActivity;
 import com.example.remainme.remaindme.Adapters.TaskAdapter;
 import com.example.remainme.remaindme.DataBaseHelper.DataBaseHelper;
 import com.example.remainme.remaindme.Lisitners.RecyclerTouchListener;
@@ -41,6 +44,7 @@ public class HomeFragment extends Fragment {
     private List<Task> taskList;
     private RecyclerView recyclerView;
     private TaskAdapter taskAdapter;
+    FloatingActionButton fab;
     DataBaseHelper myDb;
     public HomeFragment() {
         // Required empty public constructor
@@ -87,6 +91,15 @@ public class HomeFragment extends Fragment {
         taskAdapter = new TaskAdapter(getContext(), taskList);
         recyclerView.setAdapter(taskAdapter);
         myDb = new DataBaseHelper(getContext(), "my_task");
+        fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment =new NewTaskFragment();
+                FragmentTransaction fragmentTransaction = ((BaseActivity)getActivity()).getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fl_container_base, fragment).commit();
+            }
+        });
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext().getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
