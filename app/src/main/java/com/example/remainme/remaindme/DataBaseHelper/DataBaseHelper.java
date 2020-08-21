@@ -54,7 +54,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(this.dateTime,datetime);
         contentValues.put(this.remainder,reminder);
         contentValues.put(this.createdAt,dtf.format(now));
-        Log.e(">>>>>data",contentValues.toString());
         long result = db.insert(this.tableName,null ,contentValues);
         if(result == -1)
             return false;
@@ -65,5 +64,27 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from "+this.tableName,null);
         return res;
+    }
+    public Cursor getFilterData(String id){
+        Cursor res=null;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String[] params = new String[]{id};
+        res =db.query("my_task",null,"id=?",params,null,null,null);
+        Log.e(">>>>>ressssssssssssssss", String.valueOf(res));
+        return res;
+    }
+    public boolean updateData(String sid,String title,String schedule,String datetime) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(this.title,title);
+        contentValues.put(this.remainder,schedule);
+        contentValues.put(this.dateTime,datetime);
+        Log.e(">>>>>data",contentValues.toString());
+        db.update(this.tableName, contentValues, "id = ?",new String[] { sid });
+        return true;
+    }
+    public Integer deleteData (String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(this.tableName, "id = ?",new String[] {id});
     }
 }

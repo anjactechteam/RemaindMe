@@ -51,7 +51,9 @@
                 />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -70,7 +72,7 @@
                 android:textColor="#e91e63"
                 android:padding="15dp"
                 android:singleLine="true"
-                android:drawableRight="@drawable/ic_calendar_black_24dp"/>
+                android:drawableEnd="@drawable/ic_calendar_black_24dp"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,16 +85,16 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:padding="15dp"
-                android:drawableRight="@drawable/ic_schedule_black_24dp"/>
+                android:drawableEnd="@drawable/ic_schedule_black_24dp"/>
         <TextView
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:text="Remaind Me"
-            android:drawableLeft="@drawable/ic_add_alert_black_24dp"
+            android:drawableStart="@drawable/ic_add_alert_black_24dp"
             android:padding="10dp"
             android:gravity="center_horizontal"
             android:layout_marginTop="160dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             />
         <Switch
             android:id="@+id/remindme_switch"
@@ -109,7 +111,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="220dp"
-            android:tooltipText="Category"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
@@ -118,18 +119,18 @@
                 android:id="@+id/study"
                 android:layout_width="60dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:text="Study"
                 android:gravity="center"
                 android:textColor="#ff9100"
                 android:background="#ffcc80" />
             <TextView
                 android:id="@+id/wishes"
-                android:layout_toRightOf="@+id/study"
+                android:layout_toEndOf="@+id/study"
                 android:layout_width="60dp"
                 android:layout_height="30dp"
                 android:text="Wishes"
-                android:layout_marginLeft="50dp"
+                android:layout_marginStart="50dp"
                 android:gravity="center"
                 android:textColor="#e91e63"
                 android:background="#f48fb1"/>
@@ -138,12 +139,18 @@
                 android:layout_width="60dp"
                 android:layout_height="30dp"
                 android:text="Events"
-                android:layout_marginLeft="50dp"
-                android:layout_toRightOf="@+id/wishes"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="50dp"
+                android:layout_toEndOf="@+id/wishes"
+                android:layout_marginEnd="20dp"
                 android:gravity="center"
                 android:textColor="#0091ea"
                 android:background="#b3e5fc"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:id="@+id/task_id"
+                android:layout_below="@+id/eventss"/>
         </RelativeLayout>
         <android.support.v7.widget.ButtonBarLayout
             android:layout_width="match_parent"
@@ -160,8 +167,19 @@
                 android:layout_margin="15dp"
                 android:text="Create New Task"
                 android:textColor="@color/colorAccent"
+                android:background="@drawable/mybutton" />
+            <Button
+                android:id="@+id/update_new_task"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="15dp"
+                android:visibility="gone"
+                android:text="Update New Task"
+                android:textColor="@color/colorAccent"
                 android:background="@drawable/mybutton"
-                android:elevation="@dimen/cardview_compat_inset_shadow"/>
+                />
         </android.support.v7.widget.ButtonBarLayout>
     </android.support.v7.widget.CardView>
+    </RelativeLayout>
 </FrameLayout>

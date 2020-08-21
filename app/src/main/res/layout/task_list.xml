@@ -20,6 +20,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp">
+            <ImageButton
+                android:id="@+id/taskViewOptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                app:srcCompat="@drawable/ic_menu_black_24dp"
+                android:background="#ffffff"
+                android:textAppearance="?android:textAppearanceLarge"
+                />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,7 +44,7 @@
             android:id="@+id/varity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_schedule_black_24dp"
+            app:srcCompat="@drawable/ic_schedule_black_24dp"
             android:background="#ffffff"
             android:layout_marginTop="38dp"
             android:layout_gravity="center_vertical"

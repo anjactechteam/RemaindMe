@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,25 +29,14 @@ import com.example.remainme.remaindme.R;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link NewTaskFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link NewTaskFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class NewTaskFragment extends Fragment implements View.OnClickListener{
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class NewTaskFragment extends Fragment implements View.OnClickListener{
+
+    private String mParam3="",mParam2="",mParam1="",sid="";
+    private boolean isupdate=false;
     TextView time,date,task_name;
-    Button create_task;
+    Button create_task,update_task;
+    EditText id;
     DataBaseHelper myDb;
     private int mYear, mMonth, mDay, mHour, mMinute;
     private OnFragmentInteractionListener mListener;
@@ -55,31 +45,19 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory
-     * method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment NewTaskFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static NewTaskFragment newInstance(String param1, String param2) {
-        NewTaskFragment fragment = new NewTaskFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = getArguments().getString("title");
+            mParam2 = getArguments().getString("schedule");
+            mParam3 = getArguments().getString("datetime");
+            isupdate= getArguments().getBoolean("isupdate");
+            sid     = getArguments().getString("id");
+            Log.e(">>>>>>mparam",mParam1+mParam2);
         }
     }
 
@@ -93,10 +71,30 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
         date = viewroot.findViewById(R.id.date);
         task_name =viewroot.findViewById(R.id.task_name);
         create_task = viewroot.findViewById(R.id.create_new_task);
+        update_task = viewroot.findViewById(R.id.update_new_task);
+        id= viewroot.findViewById(R.id.task_id);
+        id.setVisibility(View.GONE);
         myDb = new DataBaseHelper(getContext(),"my_task");
+        if (isupdate){
+            create_task.setVisibility(View.GONE);
+            update_task.setVisibility(View.VISIBLE);
+            if (!mParam1.isEmpty())
+                task_name.setText(mParam1);
+            if (!mParam3.isEmpty()){
+                String[] str =mParam3.split(" ");
+                date.setText(str[0]);
+                time.setText(str[1]);
+            }
+            id.setText(sid);
+        }else{
+            create_task.setVisibility(View.VISIBLE);
+            update_task.setVisibility(View.GONE);
+        }
+
         time.setOnClickListener(this);
         date.setOnClickListener(this);
         create_task.setOnClickListener(this);
+        update_task.setOnClickListener(this);
         return viewroot;
     }
 
@@ -186,6 +184,25 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
                     Toast.makeText(getContext(),"Data not Inserted",Toast.LENGTH_LONG).show();
             }
 
+        }
+        if(view==update_task){
+            String string_create_task= task_name.getText().toString();
+            String string_date_time  = date.getText().toString()+" "+time.getText().toString();
+            String ids=id.getText().toString();
+            Log.e(">>>data_update",string_date_time+string_create_task+ids);
+            if (ids.isEmpty()){
+                Toast.makeText(getContext(),"This Schedule Never be Edited nor be deleted",Toast.LENGTH_SHORT).show();
+            }else{
+                boolean isUpdated = myDb.updateData(ids,string_create_task,"N",string_date_time);
+                if (isUpdated){
+                    Intent refresh = new Intent(getContext(), BaseActivity.class);
+                    startActivity(refresh);
+                    getActivity().finish();
+                    Toast.makeText(getContext(),"Data Update",Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(getContext(),"Data Not Update",Toast.LENGTH_LONG).show();
+                }
+            }
         }
     }
     /**
