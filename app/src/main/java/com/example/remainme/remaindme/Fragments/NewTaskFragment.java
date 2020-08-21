@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -38,6 +39,7 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
     Button create_task,update_task;
     EditText id;
     DataBaseHelper myDb;
+    Switch reminder;
     private int mYear, mMonth, mDay, mHour, mMinute;
     private OnFragmentInteractionListener mListener;
 
@@ -72,6 +74,7 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
         task_name =viewroot.findViewById(R.id.task_name);
         create_task = viewroot.findViewById(R.id.create_new_task);
         update_task = viewroot.findViewById(R.id.update_new_task);
+        reminder    = viewroot.findViewById(R.id.remindme_switch);
         id= viewroot.findViewById(R.id.task_id);
         id.setVisibility(View.GONE);
         myDb = new DataBaseHelper(getContext(),"my_task");
@@ -85,6 +88,10 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
                 date.setText(str[0]);
                 time.setText(str[1]);
             }
+            if(mParam2.equals("Y"))
+                reminder.setChecked(true);
+            else
+                reminder.setChecked(false);
             id.setText(sid);
         }else{
             create_task.setVisibility(View.VISIBLE);
@@ -166,11 +173,17 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
         if(view==create_task){
             String string_create_task= task_name.getText().toString();
             String string_date_time  = date.getText().toString()+" "+time.getText().toString();
+            String remindme="";
+            if (reminder.isChecked())
+                remindme="Y";
+            else
+                remindme="N";
+
             if(string_create_task.equals("") ||  string_date_time.equals("") || string_create_task.isEmpty() || string_date_time.isEmpty()) {
                 Toast.makeText(getContext(), "Please select date/time/task", Toast.LENGTH_SHORT).show();
                 return;
             }else{
-                boolean isInserted = myDb.insertData(string_create_task,string_date_time,"Y");
+                boolean isInserted = myDb.insertData(string_create_task,string_date_time,remindme);
                 if(isInserted == true) {
                     task_name.setText("");
                     date.setText("");
@@ -189,11 +202,16 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
             String string_create_task= task_name.getText().toString();
             String string_date_time  = date.getText().toString()+" "+time.getText().toString();
             String ids=id.getText().toString();
+            String remindme="";
+            if (reminder.isChecked())
+                remindme="Y";
+            else
+                remindme="N";
             Log.e(">>>data_update",string_date_time+string_create_task+ids);
             if (ids.isEmpty()){
                 Toast.makeText(getContext(),"This Schedule Never be Edited nor be deleted",Toast.LENGTH_SHORT).show();
             }else{
-                boolean isUpdated = myDb.updateData(ids,string_create_task,"N",string_date_time);
+                boolean isUpdated = myDb.updateData(ids,string_create_task,remindme,string_date_time);
                 if (isUpdated){
                     Intent refresh = new Intent(getContext(), BaseActivity.class);
                     startActivity(refresh);
