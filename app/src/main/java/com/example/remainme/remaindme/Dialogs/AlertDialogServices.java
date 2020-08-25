@@ -1,6 +1,5 @@
-package com.example.remainme.remaindme.Libs;
+package com.example.remainme.remaindme.Dialogs;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;

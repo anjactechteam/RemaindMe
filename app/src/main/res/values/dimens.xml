@@ -15,4 +15,16 @@
     <dimen name="common1dp">1dp</dimen>
     <dimen name="common5dp">5dp</dimen>
     <dimen name="common3dp">3dp</dimen>
+    <dimen name="common32dp">32dp</dimen>
+    <dimen name="common8dp">8dp</dimen>
+    <dimen name="common200dp">200dp</dimen>
+    <dimen name="common0dp">0dp</dimen>
+    <dimen name="common4dp">4dp</dimen>
+    <dimen name="common2dp">2dp</dimen>
+    <dimen name="common64dp">64dp</dimen>
+    <dimen name="common6dp">6dp</dimen>
+    <dimen name="common30dp">30dp</dimen>
+    <dimen name="common100dp">100dp</dimen>
+    <dimen name="common20dp">20dp</dimen>
+    <dimen name="common50dp">50dp</dimen>
 </resources>

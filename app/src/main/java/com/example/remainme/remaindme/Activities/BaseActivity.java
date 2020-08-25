@@ -22,9 +22,11 @@ import com.example.remainme.remaindme.Fragments.HomeFragment;
 import com.example.remainme.remaindme.Fragments.NewTaskFragment;
 import com.example.remainme.remaindme.Fragments.ProfileFragment;
 import com.example.remainme.remaindme.Fragments.SettingsFragment;
+import com.example.remainme.remaindme.Libs.Constants;
 import com.example.remainme.remaindme.R;
 
-public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,NewTaskFragment.OnFragmentInteractionListener {
+public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
+        NewTaskFragment.OnFragmentInteractionListener {
 
     DrawerLayout drawer;
 
@@ -116,7 +118,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         }
 
         if (aClass != null) {
-            startActivity(new Intent(BaseActivity.this, aClass));
+//            startActivity(new Intent(BaseActivity.this, aClass));
+            Constants.moveNextPage(BaseActivity.this,aClass);
         } else {
             navigateToFragment(fragment);
         }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    tools:context=".Activities.WelcomeActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_welcome_slider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common0dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/tl_welcome_slider"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_editor_absoluteX="@dimen/common8dp"
+            app:layout_editor_absoluteY="@dimen/common8dp"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/btn_next_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/common32dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/White"
+            android:drawableRight="@drawable/ic_keyboard_arrow_right_24"
+            android:drawableTint="@color/gradient_start_color"
+            android:text="@string/next"
+            android:textColor="@color/gradient_start_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="RtlHardcoded"
+            tools:targetApi="m" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tl_welcome_slider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="@dimen/common8dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_next_welcome"
+            app:layout_constraintHorizontal_bias="0.202"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tabIndicatorColor="@color/White"
+            app:tabBackground="@drawable/tab_indicator_selector">
+
+        </android.support.design.widget.TabLayout>
+        
+        <Button
+            android:id="@+id/btn_get_started_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="135dp"
+            android:layout_marginStart="@dimen/common8dp"
+            android:layout_marginLeft="@dimen/common8dp"
+            android:layout_marginEnd="@dimen/common8dp"
+            android:layout_marginRight="@dimen/common8dp"
+            android:layout_marginBottom="@dimen/common64dp"
+            android:text="Get Started"
+            android:visibility="visible"
+            android:shadowColor="@color/grey"
+            android:shadowRadius="@integer/google_play_services_version"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/btn_gradient_style"
+            android:textColor="@color/White"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+</RelativeLayout>
