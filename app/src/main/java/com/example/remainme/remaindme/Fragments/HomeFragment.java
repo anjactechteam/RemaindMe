@@ -22,7 +22,10 @@ import com.example.remainme.remaindme.Lisitners.RecyclerTouchListener;
 import com.example.remainme.remaindme.Models.Task;
 import com.example.remainme.remaindme.R;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.time.format.DateTimeFormatter;
 
@@ -119,26 +122,13 @@ public class HomeFragment extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void prepareData() {
-        /*        taskList.add(new Task(1, "My first Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-        taskList.add(new Task(2, "My Second Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-        taskList.add(new Task(3, "My Third Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-        taskList.add(new Task(4, "My fourth Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-        taskList.add(new Task(5, "My fifth Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-        taskList.add(new Task(6, "My sixth Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-        taskList.add(new Task(7, "My seventh Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-        taskList.add(new Task(8, "My eigth Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-        taskList.add(new Task(9, "My nine Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-        taskList.add(new Task(10, "My ten Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-        taskList.add(new Task(11, "My eleven Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));
-        taskList.add(new Task(12, "My twelve Title is here","Today","done","not_done","later",R.drawable.ic_schedule_black_24dp));*/
         Cursor res = myDb.getAllData();
         if (res.getCount() == 0) {
-            // show message
             showMessage("ReminderMe", "Create Your Schedule");
             return;
         }
         while (res.moveToNext()) {
-            taskList.add(new Task(Integer.parseInt(res.getString(0)), res.getString(1), res.getString(3), "done", "not_done", "later", R.drawable.ic_schedule_black_24dp));
+            taskList.add(new Task(Integer.parseInt(res.getString(0)), res.getString(1), (res.getString(3)+" "+res.getString(4)), "done", "not_done", "later", R.drawable.ic_schedule_black_24dp));
         }
         taskAdapter.notifyDataSetChanged();
     }
@@ -150,5 +140,18 @@ public class HomeFragment extends Fragment {
         builder.setMessage(Message);
         builder.show();
     }
-
+    public String convertStringToDate(String dateString)
+    {
+        Date date = null;
+        String formatteddate = null;
+        DateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        try{
+            date = df.parse(dateString);
+            formatteddate = df.format(date);
+        }
+        catch ( Exception ex ){
+            System.out.println(ex);
+        }
+        return formatteddate;
+    }
 }

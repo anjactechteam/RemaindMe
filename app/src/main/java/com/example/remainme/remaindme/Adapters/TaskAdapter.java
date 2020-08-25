@@ -57,7 +57,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     }
 
     @Override
-    public void onBindViewHolder(final TaskViewHolder holder, int position) {
+    public void onBindViewHolder(final TaskViewHolder holder, final int position) {
         final Task task = taskList.get(position);
         holder.title.setText(task.getTitle());
         holder.schedule.setText(task.getSchedule());
@@ -87,6 +87,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                                     bundle.putString("title", res.getString(1));
                                     bundle.putString("schedule", res.getString(2));
                                     bundle.putString("datetime", res.getString(3));
+                                    bundle.putString("time", res.getString(4));
                                     bundle.putBoolean("isupdate", true);
                                 }
                                 NewTaskFragment newTaskFragment = new NewTaskFragment();
@@ -105,10 +106,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                                                                 int which) {
                                                 Integer deletedRows = mdb.deleteData(Integer.toString(task.getId()));
                                                 if(deletedRows > 0){
-                                                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                                                    Intent refresh = new Intent(mCtx, BaseActivity.class);
-                                                    activity.startActivity(refresh);
-                                                    activity.finish();
+                                                    taskList.remove(position);
+                                                    notifyItemRemoved(position);
+                                                    notifyItemRangeChanged(position, taskList.size());
                                                     Toast.makeText(mCtx,"Data Deleted",Toast.LENGTH_LONG).show();
                                                 }
                                                 else

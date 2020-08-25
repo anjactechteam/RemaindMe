@@ -33,7 +33,7 @@ import java.util.Calendar;
 
 public class NewTaskFragment extends Fragment implements View.OnClickListener{
 
-    private String mParam3="",mParam2="",mParam1="",sid="";
+    private String mParam3="",mParam2="",mParam1="",sid="",mtime="";
     private boolean isupdate=false;
     TextView time,date,task_name;
     Button create_task,update_task;
@@ -57,6 +57,7 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
             mParam1 = getArguments().getString("title");
             mParam2 = getArguments().getString("schedule");
             mParam3 = getArguments().getString("datetime");
+            mtime   = getArguments().getString("time");
             isupdate= getArguments().getBoolean("isupdate");
             sid     = getArguments().getString("id");
             Log.e(">>>>>>mparam",mParam1+mParam2);
@@ -83,11 +84,10 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
             update_task.setVisibility(View.VISIBLE);
             if (!mParam1.isEmpty())
                 task_name.setText(mParam1);
-            if (!mParam3.isEmpty()){
-                String[] str =mParam3.split(" ");
-                date.setText(str[0]);
-                time.setText(str[1]);
-            }
+
+            date.setText(mParam3);
+            time.setText(mtime);
+
             if(mParam2.equals("Y"))
                 reminder.setChecked(true);
             else
@@ -144,8 +144,19 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
-
-                            time.setText(hourOfDay + ":" + minute);
+                            StringBuilder sb = new StringBuilder();
+                            String sMinutes="";
+                            if (minute < 10)
+                                sMinutes = "0" + minute;
+                            else
+                                sMinutes = String.valueOf(minute);
+                            if(hourOfDay>=12){
+                                sb.append(hourOfDay-12).append( ":" ).append(sMinutes).append(":00");
+                            }else{
+                                sb.append(hourOfDay).append( ":" ).append(sMinutes).append(":00");
+                            }
+                            String strTime = sb.toString();
+                            time.setText(strTime);
                         }
                     }, mHour, mMinute, false);
             timePickerDialog.show();
@@ -164,7 +175,16 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
                             String[] months ={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
-                            date.setText(dayOfMonth + "/" + months[monthOfYear] + "/" + year);
+                            String smonthOfYear="",sdayOfMonth="";
+                            if(monthOfYear < 10){
+                              smonthOfYear = "0" + (monthOfYear+1);
+                            }
+                            if(dayOfMonth < 10)
+                                sdayOfMonth  = "0" + (dayOfMonth);
+                            else
+                                sdayOfMonth = String.valueOf(dayOfMonth);
+
+                            date.setText(String.valueOf(year)+"-"+smonthOfYear+"-"+sdayOfMonth);
 
                         }
                     }, mYear, mMonth, mDay);
@@ -172,7 +192,8 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
         }
         if(view==create_task){
             String string_create_task= task_name.getText().toString();
-            String string_date_time  = date.getText().toString()+" "+time.getText().toString();
+            String string_date_time  = date.getText().toString();
+            String string_time =time.getText().toString();
             String remindme="";
             if (reminder.isChecked())
                 remindme="Y";
@@ -183,7 +204,7 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
                 Toast.makeText(getContext(), "Please select date/time/task", Toast.LENGTH_SHORT).show();
                 return;
             }else{
-                boolean isInserted = myDb.insertData(string_create_task,string_date_time,remindme);
+                boolean isInserted = myDb.insertData(string_create_task,string_date_time,remindme,string_time);
                 if(isInserted == true) {
                     task_name.setText("");
                     date.setText("");
@@ -200,8 +221,9 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
         }
         if(view==update_task){
             String string_create_task= task_name.getText().toString();
-            String string_date_time  = date.getText().toString()+" "+time.getText().toString();
+            String string_date_time  = date.getText().toString();
             String ids=id.getText().toString();
+            String string_time =time.getText().toString();
             String remindme="";
             if (reminder.isChecked())
                 remindme="Y";
@@ -211,7 +233,7 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
             if (ids.isEmpty()){
                 Toast.makeText(getContext(),"This Schedule Never be Edited nor be deleted",Toast.LENGTH_SHORT).show();
             }else{
-                boolean isUpdated = myDb.updateData(ids,string_create_task,remindme,string_date_time);
+                boolean isUpdated = myDb.updateData(ids,string_create_task,remindme,string_date_time,string_time);
                 if (isUpdated){
                     Intent refresh = new Intent(getContext(), BaseActivity.class);
                     startActivity(refresh);
