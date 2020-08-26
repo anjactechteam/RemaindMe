@@ -2,23 +2,31 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true" >
         <shape android:shape="rectangle"  >
-            <corners android:radius="5dip" />
-            <stroke android:width="1dip" android:color="#232626" />
-            <gradient android:angle="-90" android:startColor="#232626" android:endColor="#2e3332"  />
+            <corners android:radius="@dimen/common6dp"
+                android:topLeftRadius="@dimen/common16dp"
+                android:bottomRightRadius="@dimen/common16dp" />
+            <stroke android:width="1dip" android:color="@color/gradient_start_color" />
+            <gradient android:angle="-90" android:startColor="@color/gradient_start_color"
+                android:endColor="@color/gradient_end_color"  />
         </shape>
     </item>
     <item android:state_focused="true">
         <shape android:shape="rectangle"  >
-            <corners android:radius="5dip" />
-            <stroke android:width="1dip" android:color="#232626" />
-            <solid android:color="#58857e"/>
+            <corners android:radius="@dimen/common6dp"
+                android:topLeftRadius="@dimen/common16dp"
+                android:bottomRightRadius="@dimen/common16dp" />
+            <stroke android:width="1dip" android:color="@color/gradient_start_color"/>
+            <solid android:color="@color/gradient_start_color"/>
         </shape>
     </item>
     <item >
         <shape android:shape="rectangle"  >
-            <corners android:radius="5dip" />
-            <stroke android:width="1dip" android:color="#232626" />
-            <gradient android:angle="-90" android:startColor="#232626" android:endColor="#2e3332"  />
+            <corners android:radius="@dimen/common6dp"
+                android:topLeftRadius="@dimen/common16dp"
+                android:bottomRightRadius="@dimen/common16dp" />
+            <stroke android:width="1dip" android:color="@color/gradient_start_color" />
+            <gradient android:angle="-90" android:startColor="@color/gradient_start_color"
+                android:endColor="@color/gradient_end_color" />
         </shape>
     </item>
 </selector>

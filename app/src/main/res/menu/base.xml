@@ -5,7 +5,7 @@
         android:id="@+id/main_calendar"
         android:title="Calendar"
         app:showAsAction="always"
-        android:icon="@drawable/ic_calendar_black_24dp" />
+        android:icon="@drawable/ic_calendar_white_24dp" />
     <item
         android:id="@+id/main_search"
         android:title="Search"

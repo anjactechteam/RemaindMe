@@ -138,7 +138,7 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
             mMinute = c.get(Calendar.MINUTE);
 
             // Launch Time Picker Dialog
-            TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
+            TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),R.style.TimePickerTheme,
                     new TimePickerDialog.OnTimeSetListener() {
 
                         @Override
@@ -168,7 +168,7 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
             mDay = c.get(Calendar.DAY_OF_MONTH);
 
 
-            DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
+            DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),R.style.TimePickerTheme,
                     new DatePickerDialog.OnDateSetListener() {
 
                         @Override

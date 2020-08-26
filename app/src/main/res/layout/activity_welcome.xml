@@ -67,7 +67,6 @@
             android:text="Get Started"
             android:visibility="visible"
             android:shadowColor="@color/grey"
-            android:shadowRadius="@integer/google_play_services_version"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

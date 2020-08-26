@@ -25,5 +25,9 @@
     <color name="tab_indicator_gray">#C0C0C0</color>
     <color name="intro_title_color">#000000</color>
     <color name="intro_desc_color">#656565</color>
+    <color name="dark_black">#000000</color>
+    <color name="tomato_sause">#fc1b6e</color>
+    <color name="green">#1afa01</color>
+    <color name="blue">#3a87f9</color>
 
 </resources>
