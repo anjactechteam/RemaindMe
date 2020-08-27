@@ -33,7 +33,7 @@ import java.util.Calendar;
 
 public class NewTaskFragment extends Fragment implements View.OnClickListener{
 
-    private String mParam3="",mParam2="",mParam1="",sid="",mtime="";
+    private String mParam3="",mParam2="",mParam1="",sid="",mtime="",stat_time;
     private boolean isupdate=false;
     TextView time,date,task_name;
     Button create_task,update_task;
@@ -145,18 +145,21 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
                             StringBuilder sb = new StringBuilder();
-                            String sMinutes="";
+                            String sMinutes="",ampms="";
                             if (minute < 10)
                                 sMinutes = "0" + minute;
                             else
                                 sMinutes = String.valueOf(minute);
+
                             if(hourOfDay>=12){
                                 sb.append(hourOfDay-12).append( ":" ).append(sMinutes).append(":00");
+                                ampms +=" AM";
                             }else{
+                                ampms +=" PM";
                                 sb.append(hourOfDay).append( ":" ).append(sMinutes).append(":00");
                             }
-                            String strTime = sb.toString();
-                            time.setText(strTime);
+                            stat_time = sb.toString();
+                            time.setText(hourOfDay +":"+sMinutes+" "+ ampms);
                         }
                     }, mHour, mMinute, false);
             timePickerDialog.show();
@@ -193,7 +196,7 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
         if(view==create_task){
             String string_create_task= task_name.getText().toString();
             String string_date_time  = date.getText().toString();
-            String string_time =time.getText().toString();
+            String string_time =stat_time;
             String remindme="";
             if (reminder.isChecked())
                 remindme="Y";
@@ -223,7 +226,7 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
             String string_create_task= task_name.getText().toString();
             String string_date_time  = date.getText().toString();
             String ids=id.getText().toString();
-            String string_time =time.getText().toString();
+            String string_time =stat_time;
             String remindme="";
             if (reminder.isChecked())
                 remindme="Y";

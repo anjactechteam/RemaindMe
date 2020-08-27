@@ -21,14 +21,14 @@
 
             <android.support.v7.widget.CardView
                 android:id="@+id/top-card"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 android:clipToPadding="true"
                 android:padding="4dp"
                 app:cardBackgroundColor="#5b9ef0"
-                app:cardCornerRadius="20dp">
+                app:cardCornerRadius="10dp">
 
                 <ImageButton
                     android:id="@+id/schedule_icon"

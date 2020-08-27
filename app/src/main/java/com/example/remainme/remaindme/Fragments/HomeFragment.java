@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,8 @@ import com.example.remainme.remaindme.R;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -128,7 +131,11 @@ public class HomeFragment extends Fragment {
             return;
         }
         while (res.moveToNext()) {
-            taskList.add(new Task(Integer.parseInt(res.getString(0)), res.getString(1), (res.getString(3)+" "+res.getString(4)), "done", "not_done", "later", R.drawable.ic_schedule_black_24dp));
+            LocalDate myDateObj = LocalDate.parse(res.getString(3));
+            DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+            String formattedDate = myDateObj.format(myFormatObj);
+            Log.e(">>>>>Date",formattedDate);
+            taskList.add(new Task(Integer.parseInt(res.getString(0)), res.getString(1), (formattedDate+" "+res.getString(4)), "done", "not_done", "later", R.drawable.ic_schedule_black_24dp));
         }
         taskAdapter.notifyDataSetChanged();
     }
