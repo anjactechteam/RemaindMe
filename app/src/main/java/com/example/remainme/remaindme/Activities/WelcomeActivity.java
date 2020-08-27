@@ -39,6 +39,7 @@ public class WelcomeActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if (restoredPrefData()){
             Constants.moveNextPage(getApplicationContext(), BaseActivity.class);
+            finish();
         }
         setContentView(R.layout.activity_welcome);
         // hide tha actionbar / toolbar
@@ -92,6 +93,7 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Constants.moveNextPage(getApplicationContext(), BaseActivity.class);
+                finish();
                 savePrefData();
             }
         });

@@ -1,4 +1,4 @@
-<resources xmlns:android="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -6,33 +6,38 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/Black</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="myColor" parent="TextAppearance.AppCompat">
         <!-- Customize your theme here. -->
         <item name="android:textColorHint">@color/BgColor</item>
         <item name="colorControlActivated">@color/BgColor</item>
     </style>
+
     <style name="TimePickerTheme" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/SkyBlue</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="mySwitch" parent="Theme.AppCompat.Light">
         <item name="colorControlActivated">@color/gradient_start_color</item>
-        <item name="colorSwitchThumbNormal">#f1f1f1
-        </item>
-        <item name="android:colorForeground">#42221f1f
-        </item>
+        <item name="colorSwitchThumbNormal">#f1f1f1</item>
+        <item name="android:colorForeground">#42221f1f</item>
     </style>
+
     <style name="navHeader" parent="Base.ThemeOverlay.AppCompat.Dark">
         <item name="android:startColor">@color/gradient_start_color</item>
         <item name="android:endColor">@color/gradient_start_color</item>
     </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

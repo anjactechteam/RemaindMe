@@ -65,7 +65,7 @@
             android:layout_marginRight="@dimen/common8dp"
             android:layout_marginBottom="@dimen/common64dp"
             android:text="Get Started"
-            android:visibility="visible"
+            android:visibility="gone"
             android:shadowColor="@color/grey"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
