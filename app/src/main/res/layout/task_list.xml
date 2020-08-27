@@ -51,7 +51,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dp"/>
 
-        <TextView
+            <TextView
             android:id="@+id/type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,23 +66,24 @@
                 android:layout_height="20dp"
                 android:layout_width="105dp"
                 android:text="@string/done"
+                android:layout_marginStart="8dp"
                 android:textColor="@color/green"
                 android:layout_marginTop="30dp"
                 android:layout_alignTop="@+id/type"
-                android:layout_gravity=""/>
+                />
             <TextView
                 android:id="@+id/not_done"
                 android:layout_height="20dp"
                 android:layout_width="105dp"
                 android:text="@string/not_done"
                 android:textColor="@color/tomato_sause"
-                android:layout_toRightOf="@+id/done"
+                android:layout_toEndOf="@+id/done"
                 android:layout_marginTop="30dp"
                 android:layout_alignTop="@+id/type"
                 android:textAlignment="center"/>
             <TextView
                 android:id="@+id/later"
-                android:layout_toRightOf="@+id/not_done"
+                android:layout_toEndOf="@+id/not_done"
                 android:layout_height="20dp"
                 android:layout_width="105dp"
                 android:text="@string/later"
