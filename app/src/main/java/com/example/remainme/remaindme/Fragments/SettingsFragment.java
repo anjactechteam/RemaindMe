@@ -1,11 +1,16 @@
 package com.example.remainme.remaindme.Fragments;
 
+import android.app.NotificationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.remainme.remaindme.Libs.NotificationServices;
 import com.example.remainme.remaindme.R;
 
 /**
@@ -59,6 +64,20 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
+
+        view.findViewById(R.id.notify).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new NotificationServices(getContext()).setTitle("Have a nice day !")
+                        .setMessage("No tasks available today")
+                        .setIcon(R.mipmap.ic_launcher)
+                        .setPriority(NotificationCompat.PRIORITY_MAX)
+                        .setImportance(NotificationManager.IMPORTANCE_MAX)
+                        .showOnlyNotify();
+
+            }
+        });
+        return view;
     }
 }

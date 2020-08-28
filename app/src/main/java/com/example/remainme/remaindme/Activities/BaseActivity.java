@@ -24,6 +24,7 @@ import com.example.remainme.remaindme.Fragments.NewTaskFragment;
 import com.example.remainme.remaindme.Fragments.ProfileFragment;
 import com.example.remainme.remaindme.Fragments.SettingsFragment;
 import com.example.remainme.remaindme.Libs.Constants;
+import com.example.remainme.remaindme.Libs.NotificationServices;
 import com.example.remainme.remaindme.R;
 
 import java.util.List;
@@ -139,6 +140,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.END);
+
         return true;
     }
 
