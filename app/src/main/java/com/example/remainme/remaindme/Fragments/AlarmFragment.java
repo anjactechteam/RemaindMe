@@ -109,6 +109,7 @@ public class AlarmFragment extends Fragment {
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getCurrentHour());
             calendar.set(Calendar.MINUTE, alarmTimePicker.getCurrentMinute());
+            Log.e(">>>>>timeinmills", String.valueOf(alarmTimePicker.getCurrentHour()+" "+alarmTimePicker.getCurrentMinute()));
             Intent myIntent = new Intent(getContext().getApplicationContext(), AlarmReceiver.class);
             pendingIntent = PendingIntent.getBroadcast(getContext().getApplicationContext(), 0, myIntent, 0);
             alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);

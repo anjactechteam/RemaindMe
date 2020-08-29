@@ -30,16 +30,23 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public final String time="times";
     public final String remainder="reminder";
     public final String createdAt="create_at";
-
+    SimpleDateFormat dateFormat=null;
+    Date date=null;
     public DataBaseHelper(Context context, String table_name) {
         super(context, DB_REMAINDME, null, 1);
         this.tableName=table_name;
     }
     private String getDateTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(
+        dateFormat = new SimpleDateFormat(
                 "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        Date date = new Date();
+        date = new Date();
         return dateFormat.format(date);
+    }
+    String getDate(){
+        dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd", Locale.getDefault());
+        date = new Date();
+        return dateFormat.format(date).toString();
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -94,5 +101,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(this.tableName, "id = ?",new String[] {id});
     }
-
+    public Cursor getFilterDate(){
+        Cursor res=null;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Log.e("lop",getDate());
+        String[] params = new String[]{getDate()};
+        res =db.query("my_task",null,"dates=?",params,null,null,null);
+        return res;
+    }
 }

@@ -20,6 +20,7 @@ import com.example.remainme.remaindme.Activities.BaseActivity;
 import com.example.remainme.remaindme.Adapters.TaskAdapter;
 import com.example.remainme.remaindme.DataBaseHelper.DataBaseHelper;
 import com.example.remainme.remaindme.Lisitners.RecyclerTouchListener;
+import com.example.remainme.remaindme.Models.Comman;
 import com.example.remainme.remaindme.Models.Task;
 import com.example.remainme.remaindme.R;
 
@@ -52,6 +53,7 @@ public class HomeFragment extends Fragment {
     private TaskAdapter taskAdapter;
     FloatingActionButton fab;
     DataBaseHelper myDb;
+    Comman comman;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -97,6 +99,7 @@ public class HomeFragment extends Fragment {
         taskAdapter = new TaskAdapter(getContext(), taskList);
         recyclerView.setAdapter(taskAdapter);
         myDb = new DataBaseHelper(getContext(), "my_task");
+        comman = new Comman();
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,16 +129,20 @@ public class HomeFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void prepareData() {
         Cursor res = myDb.getAllData();
+//        Cursor ress=myDb.getFilterDate();
+//        while (ress.moveToNext())
+//            Log.e(">>>>>datefilter", ress.getString(4)+ress.getString(1)+ress.getString(2)+ress.getString(3));
+
         if (res.getCount() == 0) {
             showMessage("ReminderMe", "Create Your Schedule");
             return;
         }
         while (res.moveToNext()) {
-            LocalDate myDateObj = LocalDate.parse(res.getString(3));
-            DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
-            String formattedDate = myDateObj.format(myFormatObj);
+            String formattedDate = "",formatTime="";
+            formattedDate = comman.myParseDate(res.getString(3));
+            formatTime    = comman.formatTime(res.getString(4));
             Log.e(">>>>>Date",formattedDate);
-            taskList.add(new Task(Integer.parseInt(res.getString(0)), res.getString(1), (formattedDate+" "+res.getString(4)), "done", "not_done", "later", R.drawable.ic_schedule_black_24dp));
+            taskList.add(new Task(Integer.parseInt(res.getString(0)), res.getString(1), (formattedDate+" "+formatTime), "done", "not_done", "later", R.drawable.ic_schedule_black_24dp));
         }
         taskAdapter.notifyDataSetChanged();
     }

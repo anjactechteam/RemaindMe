@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.example.remainme.remaindme.Activities.BaseActivity;
 import com.example.remainme.remaindme.DataBaseHelper.DataBaseHelper;
 import com.example.remainme.remaindme.Activities.MainActivity;
+import com.example.remainme.remaindme.Models.Comman;
 import com.example.remainme.remaindme.R;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -40,6 +41,7 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
     EditText id;
     DataBaseHelper myDb;
     Switch reminder;
+    Comman comman;
     private int mYear, mMonth, mDay, mHour, mMinute;
     private OnFragmentInteractionListener mListener;
 
@@ -79,6 +81,7 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
         id= viewroot.findViewById(R.id.task_id);
         id.setVisibility(View.GONE);
         myDb = new DataBaseHelper(getContext(),"my_task");
+        comman = new Comman();
         if (isupdate){
             create_task.setVisibility(View.GONE);
             update_task.setVisibility(View.VISIBLE);
@@ -144,24 +147,13 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
-                            StringBuilder sb = new StringBuilder();
-                            String sMinutes="",ampms="";
-                            if (minute < 10)
-                                sMinutes = "0" + minute;
-                            else
-                                sMinutes = String.valueOf(minute);
-
-                            if(hourOfDay>=12){
-                                sb.append(hourOfDay-12).append( ":" ).append(sMinutes).append(":00");
-                                ampms +=" AM";
-                            }else{
-                                ampms +=" PM";
-                                sb.append(hourOfDay).append( ":" ).append(sMinutes).append(":00");
-                            }
-                            stat_time = sb.toString();
-                            time.setText(hourOfDay +":"+sMinutes+" "+ ampms);
+                            String sMinutes="",shourOfDay="";
+                            shourOfDay    = comman.addZeros(hourOfDay);
+                            sMinutes  = comman.addZeros(minute);
+                            stat_time = shourOfDay+":"+sMinutes+":00";
+                            time.setText(comman.hrsWithMeridians(hourOfDay,minute));
                         }
-                    }, mHour, mMinute, false);
+                    }, mHour, mMinute, true);
             timePickerDialog.show();
         } // crash da same errror
         if(view==date){
@@ -179,14 +171,8 @@ public class NewTaskFragment extends Fragment implements View.OnClickListener{
                                               int monthOfYear, int dayOfMonth) {
                             String[] months ={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
                             String smonthOfYear="",sdayOfMonth="";
-                            if(monthOfYear < 10){
-                              smonthOfYear = "0" + (monthOfYear+1);
-                            }
-                            if(dayOfMonth < 10)
-                                sdayOfMonth  = "0" + (dayOfMonth);
-                            else
-                                sdayOfMonth = String.valueOf(dayOfMonth);
-
+                            smonthOfYear=comman.addZeros((monthOfYear+1));
+                            sdayOfMonth =comman.addZeros(dayOfMonth);
                             date.setText(String.valueOf(year)+"-"+smonthOfYear+"-"+sdayOfMonth);
 
                         }
